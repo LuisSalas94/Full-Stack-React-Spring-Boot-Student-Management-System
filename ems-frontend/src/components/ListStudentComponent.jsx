@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { listStudents } from "../services/StudentService";
+import { deleteStudent, listStudents } from "../services/StudentService";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +25,11 @@ const ListStudentComponent = () => {
     navigate("/add-student");
   };
 
+  const deleteStudentById = async (id) => {
+    await deleteStudent(id);
+    fetchStudents();
+  };
+
   return (
     <div className="container">
       <h2 className="text-center my-3">List of Students</h2>
@@ -38,6 +43,7 @@ const ListStudentComponent = () => {
             <th scope="col">Employee First Name</th>
             <th scope="col">Employee Last Name</th>
             <th scope="col">Employee Email</th>
+            <th scope="col">Action #1</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +54,14 @@ const ListStudentComponent = () => {
                 <td>{item.firstName}</td>
                 <td>{item.lastName}</td>
                 <td>{item.email}</td>
+                <td>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={() => deleteStudentById(item.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
