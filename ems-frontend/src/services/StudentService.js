@@ -13,3 +13,11 @@ export const createStudent = (student) => {
 export const deleteStudent = (id) => {
   return axios.delete(`${REST_API_URL}/${id}`);
 };
+
+export const getStudentById = (id) => {
+  return axios.get(`${REST_API_URL}/${id}`);
+};
+
+export const updateStudent = (id, student) => {
+  return axios.put(`${REST_API_URL}/${id}`, student);
+};

@@ -13,6 +13,7 @@ function App() {
           <Route path="/" element={<ListStudentComponent />} />
           <Route path="/students" element={<ListStudentComponent />} />
           <Route path="/add-student" element={<StudentComponent />} />
+          <Route path="/edit-student/:id" element={<StudentComponent />} />
         </Routes>
       </BrowserRouter>
     </>

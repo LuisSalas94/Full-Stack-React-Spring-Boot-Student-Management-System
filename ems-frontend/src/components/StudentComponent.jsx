@@ -1,23 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createStudent } from "../services/StudentService";
+import {
+  createStudent,
+  getStudentById,
+  updateStudent,
+} from "../services/StudentService";
+import { useParams } from "react-router-dom";
 
 const StudentComponent = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [title, setTitle] = useState("");
+  const { id } = useParams();
+
   const navigate = useNavigate();
 
-  const saveStudent = (e) => {
+  const saveOrUpdateStudent = (e) => {
     e.preventDefault();
+    const student = { firstName, lastName, email };
     if (firstName && lastName && email) {
-      const student = { firstName, lastName, email };
+      if (id) {
+        updateStudent(id, student);
+        navigate("/");
+      }
       createStudent(student);
       navigate("/");
     } else {
       alert("Please fill all the fields");
     }
   };
+
+  const getStudent = async (id) => {
+    const response = await getStudentById(id);
+    const student = response.data;
+    setFirstName(student.firstName);
+    setLastName(student.lastName);
+    setEmail(student.email);
+  };
+
+  useEffect(() => {
+    if (id) {
+      setTitle("Update Student");
+      getStudent(id);
+    } else {
+      setTitle("Add Student");
+    }
+  }, [id]);
 
   return (
     <div className="container mt-5">
@@ -29,7 +58,7 @@ const StudentComponent = () => {
       </button>
       <div className="row">
         <div className="card col-md-6 offset-md-3 offset-md-3">
-          <h2 className="text-center">Add Student</h2>
+          <h2 className="text-center">{title}</h2>
           <div className="card-body">
             <form>
               <div className="form-group mb-2">
@@ -65,7 +94,10 @@ const StudentComponent = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <button className="btn btn-outline-success" onClick={saveStudent}>
+              <button
+                className="btn btn-outline-success"
+                onClick={saveOrUpdateStudent}
+              >
                 Submit
               </button>
             </form>

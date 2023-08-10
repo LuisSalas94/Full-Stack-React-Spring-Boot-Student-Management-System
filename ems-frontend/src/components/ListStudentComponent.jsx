@@ -25,6 +25,10 @@ const ListStudentComponent = () => {
     navigate("/add-student");
   };
 
+  const updateStudent = (id) => {
+    navigate(`/edit-student/${id}`);
+  };
+
   const deleteStudentById = async (id) => {
     await deleteStudent(id);
     fetchStudents();
@@ -44,6 +48,7 @@ const ListStudentComponent = () => {
             <th scope="col">Employee Last Name</th>
             <th scope="col">Employee Email</th>
             <th scope="col">Action #1</th>
+            <th scope="col">Action #2</th>
           </tr>
         </thead>
         <tbody>
@@ -60,6 +65,14 @@ const ListStudentComponent = () => {
                     onClick={() => deleteStudentById(item.id)}
                   >
                     Delete
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-outline-info"
+                    onClick={() => updateStudent(item.id)}
+                  >
+                    Update
                   </button>
                 </td>
               </tr>
