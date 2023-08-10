@@ -20,16 +20,16 @@ public class StudentServiceImplementation implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-//    @Autowired
-//    private DepartmentRepository departmentRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
     @Override
     public StudentDto createStudent(StudentDto studentDto) {
         Student student = StudentMapper.mapToStudent(studentDto);
 
-//        Department department = departmentRepository.findById(studentDto.getDepartmentId())
-//                .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: "
-//                                    + studentDto.getDepartmentId()));
-//        student.setDepartment(department);
+        Department department = departmentRepository.findById(studentDto.getDepartmentId())
+                .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: "
+                                    + studentDto.getDepartmentId()));
+        student.setDepartment(department);
         Student savedStudent =  studentRepository.save(student);
         return StudentMapper.mapToStudentDto(savedStudent);
     }
@@ -53,13 +53,16 @@ public class StudentServiceImplementation implements StudentService {
     public StudentDto updateStudent(Long studentId, StudentDto studentDto) {
         Student student = studentRepository.findById(studentId).orElseThrow(()->
                 new ResourceNotFoundException("Student was not found with given id: " + studentId));
+
         student.setFirstName(studentDto.getFirstName());
         student.setLastName(studentDto.getLastName());
         student.setEmail(studentDto.getEmail());
-//        Department department = departmentRepository.findById(studentDto.getDepartmentId())
-//                .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: "
-//                        + studentDto.getDepartmentId()));
-//        student.setDepartment(department);
+
+        Department department = departmentRepository.findById(studentDto.getDepartmentId())
+                .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: "
+                        + studentDto.getDepartmentId()));
+        student.setDepartment(department);
+
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.mapToStudentDto(savedStudent);
     }
