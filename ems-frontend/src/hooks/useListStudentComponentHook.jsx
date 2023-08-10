@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  listStudents,
-  listDepartments,
-  deleteStudent,
-} from "../services/StudentService";
+import { listStudents, deleteStudent } from "../services/StudentService";
+import { listDepartments } from "../services/DepartmentService";
 
 const useListStudentComponentHook = () => {
   const [students, setStudents] = useState([]);

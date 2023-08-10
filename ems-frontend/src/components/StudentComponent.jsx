@@ -1,72 +1,20 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  createStudent,
-  getStudentById,
-  updateStudent,
-} from "../services/StudentService";
-import { useParams } from "react-router-dom";
-import { listDepartments } from "../services/DepartmentService";
-import { toast } from "react-toastify";
 import ButtonLink from "./ButtonLink";
+import useStudentComponentHook from "../hooks/useStudentComponentHook";
 
 const StudentComponent = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [title, setTitle] = useState("");
-  const [departmentId, setDepartmentId] = useState("");
-  const [departments, setDepartments] = useState([]);
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const fetchDepartment = async () => {
-    const response = await listDepartments();
-    setDepartments(response.data);
-  };
-
-  useEffect(() => {
-    fetchDepartment();
-  }, []);
-
-  const saveOrUpdateStudent = async (e) => {
-    e.preventDefault();
-
-    const student = { firstName, lastName, email, departmentId };
-
-    if (firstName && lastName && email) {
-      if (id) {
-        await updateStudent(id, student);
-        toast.info("Student updated successfully!");
-        navigate("/");
-        return;
-      }
-      await createStudent(student);
-      toast.success("Student added successfully!");
-      navigate("/");
-      return;
-    } else {
-      toast.error("Please fill in all the fields!");
-    }
-  };
-
-  const getStudent = async (id) => {
-    const response = await getStudentById(id);
-    const student = response.data;
-    setFirstName(student.firstName);
-    setLastName(student.lastName);
-    setEmail(student.email);
-    setDepartmentId(student.departmentId);
-  };
-
-  useEffect(() => {
-    if (id) {
-      setTitle("Update Student");
-      getStudent(id);
-    } else {
-      setTitle("Add Student");
-    }
-  }, [id]);
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    departmentId,
+    setDepartmentId,
+    departments,
+    saveOrUpdateStudent,
+    title,
+  } = useStudentComponentHook();
 
   return (
     <div className="container mt-5">
