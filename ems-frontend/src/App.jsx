@@ -18,6 +18,10 @@ function App() {
           <Route path="/edit-student/:id" element={<StudentComponent />} />
           <Route path="/departments" element={<ListDepartmentComponent />} />
           <Route path="/add-department" element={<DepartmentComponent />} />
+          <Route
+            path="/edit-department/:id"
+            element={<DepartmentComponent />}
+          />
         </Routes>
       </BrowserRouter>
     </>

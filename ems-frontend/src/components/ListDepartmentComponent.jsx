@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react";
-import { listDepartments } from "../services/DepartmentService";
-import { Link } from "react-router-dom";
+import {
+  deleteDepartment,
+  listDepartments,
+} from "../services/DepartmentService";
+import { Link, useNavigate } from "react-router-dom";
 
 const ListDepartmentComponent = () => {
   const [departments, setDepartments] = useState([]);
+  const navigate = useNavigate();
 
   const getDepartments = async () => {
     const response = await listDepartments();
     setDepartments(response.data);
+  };
+
+  const updateDepartment = (id) => {
+    navigate(`/edit-department/${id}`);
+  };
+
+  const removeDepartment = async (id) => {
+    await deleteDepartment(id);
+    getDepartments();
   };
 
   useEffect(() => {
@@ -26,6 +39,8 @@ const ListDepartmentComponent = () => {
             <th scope="col">Department ID</th>
             <th scope="col">Department Name</th>
             <th scope="col">Department Description</th>
+            <th scope="col">Action #1</th>
+            <th scope="col">Action #2</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +50,22 @@ const ListDepartmentComponent = () => {
                 <td>{item.id}</td>
                 <td>{item.departmentName}</td>
                 <td>{item.departmentDescription}</td>
+                <td>
+                  <button
+                    className="btn btn-outline-info me-2"
+                    onClick={() => updateDepartment(item.id)}
+                  >
+                    Update
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={() => removeDepartment(item.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
