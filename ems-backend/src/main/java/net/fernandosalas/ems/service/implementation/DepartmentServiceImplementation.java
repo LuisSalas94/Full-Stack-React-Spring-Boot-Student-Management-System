@@ -2,6 +2,7 @@ package net.fernandosalas.ems.service.implementation;
 import lombok.AllArgsConstructor;
 import net.fernandosalas.ems.dto.DepartmentDto;
 import net.fernandosalas.ems.entity.Department;
+import net.fernandosalas.ems.exception.ResourceNotFoundException;
 import net.fernandosalas.ems.mapper.DepartmentMapper;
 import net.fernandosalas.ems.repository.DepartmentRepository;
 import net.fernandosalas.ems.service.DepartmentService;
@@ -19,5 +20,12 @@ public class DepartmentServiceImplementation implements DepartmentService {
         Department department = DepartmentMapper.mapToDepartment(departmentDto);
         Department savedDepartment = departmentRepository.save(department);
         return DepartmentMapper.mapToDepartmentDto(savedDepartment);
+    }
+
+    @Override
+    public DepartmentDto getDepartmentById(Long departmentId) {
+      Department department = departmentRepository.findById(departmentId)
+               .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: " + departmentId));
+      return DepartmentMapper.mapToDepartmentDto(department);
     }
 }
