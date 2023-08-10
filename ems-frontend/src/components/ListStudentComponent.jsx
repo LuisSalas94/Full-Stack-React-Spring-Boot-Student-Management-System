@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { listDepartments } from "../services/DepartmentService";
 import { toast } from "react-toastify";
+import ButtonLink from "./ButtonLink";
 
 const ListStudentComponent = () => {
   const [students, setStudents] = useState([]);
@@ -37,10 +38,6 @@ const ListStudentComponent = () => {
     return department ? department.departmentName : "Unknown Department";
   };
 
-  const addStudent = () => {
-    navigate("/add-student");
-  };
-
   const updateStudent = (id) => {
     navigate(`/edit-student/${id}`);
   };
@@ -54,9 +51,7 @@ const ListStudentComponent = () => {
   return (
     <div className="container">
       <h2 className="text-center my-3">List of Students</h2>
-      <button className="btn btn-outline-primary mb-2" onClick={addStudent}>
-        Add Student
-      </button>
+      <ButtonLink text="Add Student" toAction="/add-student" />
       <table className="table table-striped">
         <thead>
           <tr>

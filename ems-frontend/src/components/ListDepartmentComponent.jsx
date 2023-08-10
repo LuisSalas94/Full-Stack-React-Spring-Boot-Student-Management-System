@@ -3,7 +3,8 @@ import {
   deleteDepartment,
   listDepartments,
 } from "../services/DepartmentService";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ButtonLink from "./ButtonLink";
 
 const ListDepartmentComponent = () => {
   const [departments, setDepartments] = useState([]);
@@ -30,9 +31,7 @@ const ListDepartmentComponent = () => {
   return (
     <div className="container">
       <h2 className="text-center py-3">List of Departments</h2>
-      <Link className="btn btn-outline-primary mb-2" to="/add-department">
-        Add Department
-      </Link>
+      <ButtonLink text="Add Department" toAction="/add-department" />
       <table className="table table-striped">
         <thead>
           <tr>

@@ -8,6 +8,7 @@ import {
 import { useParams } from "react-router-dom";
 import { listDepartments } from "../services/DepartmentService";
 import { toast } from "react-toastify";
+import ButtonLink from "./ButtonLink";
 
 const StudentComponent = () => {
   const [firstName, setFirstName] = useState("");
@@ -28,19 +29,19 @@ const StudentComponent = () => {
     fetchDepartment();
   }, []);
 
-  const saveOrUpdateStudent = (e) => {
+  const saveOrUpdateStudent = async (e) => {
     e.preventDefault();
 
     const student = { firstName, lastName, email, departmentId };
 
     if (firstName && lastName && email) {
       if (id) {
-        updateStudent(id, student);
+        await updateStudent(id, student);
         toast.info("Student updated successfully!");
         navigate("/");
         return;
       }
-      createStudent(student);
+      await createStudent(student);
       toast.success("Student added successfully!");
       navigate("/");
       return;
@@ -69,12 +70,7 @@ const StudentComponent = () => {
 
   return (
     <div className="container mt-5">
-      <button
-        className="btn btn-outline-primary "
-        onClick={() => navigate("/")}
-      >
-        Go Back
-      </button>
+      <ButtonLink text="Go Back" toAction="/" />
       <div className="row">
         <div className="card col-md-6 offset-md-3 offset-md-3">
           <h2 className="text-center">{title}</h2>

@@ -4,8 +4,9 @@ import {
   getDepartmentById,
   updateDeparment,
 } from "../services/DepartmentService";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import ButtonLink from "./ButtonLink";
 
 const DepartmentComponent = () => {
   const [departmentName, setDepartmentName] = useState("");
@@ -51,9 +52,7 @@ const DepartmentComponent = () => {
 
   return (
     <div className="container mt-5">
-      <Link className="btn btn-outline-primary" to="/departments">
-        Go Back
-      </Link>
+      <ButtonLink text="Go Back" toAction="/departments" />
       <div className="row">
         <div className="card col-md-6 offset-md-3 offset-md-3">
           <h2 className="text-center">{title}</h2>
