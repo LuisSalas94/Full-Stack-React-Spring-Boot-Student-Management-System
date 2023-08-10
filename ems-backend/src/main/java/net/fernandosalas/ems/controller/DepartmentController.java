@@ -1,5 +1,4 @@
 package net.fernandosalas.ems.controller;
-
 import lombok.AllArgsConstructor;
 import net.fernandosalas.ems.dto.DepartmentDto;
 import net.fernandosalas.ems.service.DepartmentService;
@@ -32,5 +31,12 @@ public class DepartmentController {
     public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
         List<DepartmentDto> departmentDtoList = departmentService.getAllDepartments();
         return new ResponseEntity<>(departmentDtoList, HttpStatus.OK);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<DepartmentDto> updateDepartment(@PathVariable("id") Long departmentId,
+                                                          @RequestBody DepartmentDto departmentDto) {
+       DepartmentDto updatedDepartment = departmentService.updateDepartment(departmentId, departmentDto);
+       return new ResponseEntity<>(updatedDepartment, HttpStatus.OK);
     }
 }
