@@ -1,5 +1,7 @@
 package net.fernandosalas.ems.service;
 
-public interface DepartmentService {
+import net.fernandosalas.ems.dto.DepartmentDto;
 
+public interface DepartmentService {
+    DepartmentDto createDepartment(DepartmentDto departmentDto);
 }
