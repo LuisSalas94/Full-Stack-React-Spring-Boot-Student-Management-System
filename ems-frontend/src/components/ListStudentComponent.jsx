@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { deleteStudent, listStudents } from "../services/StudentService";
 import { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Button } from "bootstrap";
+import { useNavigate } from "react-router-dom";
+import { listDepartments } from "../services/DepartmentService";
 
 const ListStudentComponent = () => {
   const [students, setStudents] = useState([]);
+  const [departments, setDepartments] = useState([]);
+
   const navigate = useNavigate();
 
   const fetchStudents = async () => {
@@ -18,9 +20,21 @@ const ListStudentComponent = () => {
     return true;
   };
 
+  const fetchDepartments = async () => {
+    const response = await listDepartments();
+    const departments = response.data;
+    setDepartments(departments);
+  };
+
   useEffect(() => {
     fetchStudents();
+    fetchDepartments();
   }, []);
+
+  const getDepartmentName = (departmentId) => {
+    const department = departments.find((dept) => dept.id === departmentId);
+    return department ? department.departmentName : "Unknown Department";
+  };
 
   const addStudent = () => {
     navigate("/add-student");
@@ -44,10 +58,10 @@ const ListStudentComponent = () => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Employee ID</th>
             <th scope="col">Employee First Name</th>
             <th scope="col">Employee Last Name</th>
             <th scope="col">Employee Email</th>
+            <th scope="col">Department</th>
             <th scope="col">Action #1</th>
             <th scope="col">Action #2</th>
           </tr>
@@ -56,10 +70,10 @@ const ListStudentComponent = () => {
           {students.map((item) => {
             return (
               <tr key={item.id}>
-                <td>{item.id}</td>
                 <td>{item.firstName}</td>
                 <td>{item.lastName}</td>
                 <td>{item.email}</td>
+                <td>{getDepartmentName(item.departmentId)}</td>
                 <td>
                   <button
                     className="btn btn-outline-danger"

@@ -1,24 +1,37 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   createStudent,
   getStudentById,
   updateStudent,
 } from "../services/StudentService";
 import { useParams } from "react-router-dom";
+import { listDepartments } from "../services/DepartmentService";
 
 const StudentComponent = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
+  const [departmentId, setDepartmentId] = useState("");
+  const [departments, setDepartments] = useState([]);
   const { id } = useParams();
-
   const navigate = useNavigate();
+
+  const fetchDepartment = async () => {
+    const response = await listDepartments();
+    setDepartments(response.data);
+  };
+
+  useEffect(() => {
+    fetchDepartment();
+  }, []);
 
   const saveOrUpdateStudent = (e) => {
     e.preventDefault();
-    const student = { firstName, lastName, email };
+
+    const student = { firstName, lastName, email, departmentId };
+
     if (firstName && lastName && email) {
       if (id) {
         updateStudent(id, student);
@@ -39,6 +52,7 @@ const StudentComponent = () => {
     setFirstName(student.firstName);
     setLastName(student.lastName);
     setEmail(student.email);
+    setDepartmentId(student.departmentId);
   };
 
   useEffect(() => {
@@ -95,6 +109,23 @@ const StudentComponent = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+              </div>
+              <div className="form-group mb-2">
+                <label className="form-label">Select Department: </label>
+                <select
+                  className="form-select"
+                  value={departmentId}
+                  onChange={(e) => setDepartmentId(e.target.value)}
+                >
+                  <option value="Select Department">Select Department</option>
+                  {departments.map((item) => {
+                    return (
+                      <option key={item.id} value={item.id}>
+                        {item.departmentName}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
               <button
                 className="btn btn-outline-success"
