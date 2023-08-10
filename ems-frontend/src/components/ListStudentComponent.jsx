@@ -1,28 +1,36 @@
+import { useState } from "react";
+import { listStudents } from "../services/StudentService";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const ListStudentComponent = () => {
-  const dummyList = [
-    {
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      email: "john@example.com",
-    },
-    {
-      id: 2,
-      firstName: "Jane",
-      lastName: "Doe",
-      email: "jane@example.com",
-    },
-    {
-      id: 3,
-      firstName: "John",
-      lastName: "Smith",
-      email: "joe@example.com",
-    },
-  ];
+  const [students, setStudents] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchStudents = async () => {
+    try {
+      const response = await listStudents();
+      setStudents(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  const addStudent = () => {
+    navigate("/add-student");
+  };
 
   return (
     <div className="container">
-      <h2 className="text-center my-3">List of Student</h2>
+      <h2 className="text-center my-3">List of Students</h2>
+      <button className="btn btn-outline-primary mb-2" onClick={addStudent}>
+        Add Employee
+      </button>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -33,7 +41,7 @@ const ListStudentComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {dummyList.map((item) => {
+          {students.map((item) => {
             return (
               <tr key={item.id}>
                 <td>{item.id}</td>
