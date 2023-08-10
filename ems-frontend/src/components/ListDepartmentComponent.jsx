@@ -36,7 +36,6 @@ const ListDepartmentComponent = () => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Department ID</th>
             <th scope="col">Department Name</th>
             <th scope="col">Department Description</th>
             <th scope="col">Action #1</th>
@@ -47,7 +46,6 @@ const ListDepartmentComponent = () => {
           {departments.map((item) => {
             return (
               <tr key={item.id}>
-                <td>{item.id}</td>
                 <td>{item.departmentName}</td>
                 <td>{item.departmentDescription}</td>
                 <td>

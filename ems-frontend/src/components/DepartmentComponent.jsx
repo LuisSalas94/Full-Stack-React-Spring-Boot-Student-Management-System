@@ -5,6 +5,7 @@ import {
   updateDeparment,
 } from "../services/DepartmentService";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DepartmentComponent = () => {
   const [departmentName, setDepartmentName] = useState("");
@@ -36,13 +37,15 @@ const DepartmentComponent = () => {
     if (departmentName && departmentDescription) {
       if (id) {
         updateDeparment(id, department);
+        toast.info("Department updated successfully!");
         navigate("/departments");
         return;
       }
       createDepartment(department);
+      toast.success("Department added successfully!");
       navigate("/departments");
     } else {
-      alert("Please fill in all fields!");
+      toast.error("Please fill in all the fields!");
     }
   };
 

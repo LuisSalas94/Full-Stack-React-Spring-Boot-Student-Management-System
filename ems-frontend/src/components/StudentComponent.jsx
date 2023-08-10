@@ -7,6 +7,7 @@ import {
 } from "../services/StudentService";
 import { useParams } from "react-router-dom";
 import { listDepartments } from "../services/DepartmentService";
+import { toast } from "react-toastify";
 
 const StudentComponent = () => {
   const [firstName, setFirstName] = useState("");
@@ -35,14 +36,16 @@ const StudentComponent = () => {
     if (firstName && lastName && email) {
       if (id) {
         updateStudent(id, student);
+        toast.info("Student updated successfully!");
         navigate("/");
         return;
       }
       createStudent(student);
+      toast.success("Student added successfully!");
       navigate("/");
       return;
     } else {
-      alert("Please fill all the fields");
+      toast.error("Please fill in all the fields!");
     }
   };
 

@@ -3,6 +3,7 @@ import { deleteStudent, listStudents } from "../services/StudentService";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { listDepartments } from "../services/DepartmentService";
+import { toast } from "react-toastify";
 
 const ListStudentComponent = () => {
   const [students, setStudents] = useState([]);
@@ -46,6 +47,7 @@ const ListStudentComponent = () => {
 
   const deleteStudentById = async (id) => {
     await deleteStudent(id);
+    toast.error("Student deleted successfully!");
     fetchStudents();
   };
 
@@ -53,7 +55,7 @@ const ListStudentComponent = () => {
     <div className="container">
       <h2 className="text-center my-3">List of Students</h2>
       <button className="btn btn-outline-primary mb-2" onClick={addStudent}>
-        Add Employee
+        Add Student
       </button>
       <table className="table table-striped">
         <thead>
