@@ -4,6 +4,7 @@ import ListStudentComponent from "./components/ListStudentComponent";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentComponent from "./components/StudentComponent";
 import ListDepartmentComponent from "./components/ListDepartmentComponent";
+import DepartmentComponent from "./components/DepartmentComponent";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/add-student" element={<StudentComponent />} />
           <Route path="/edit-student/:id" element={<StudentComponent />} />
           <Route path="/departments" element={<ListDepartmentComponent />} />
+          <Route path="/add-department" element={<DepartmentComponent />} />
         </Routes>
       </BrowserRouter>
     </>
