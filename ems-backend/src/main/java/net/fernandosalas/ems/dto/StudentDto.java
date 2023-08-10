@@ -17,5 +17,5 @@ public class StudentDto {
 
     private String email;
 
-    private Long departmentId;
+//    private Long departmentId;
 }
