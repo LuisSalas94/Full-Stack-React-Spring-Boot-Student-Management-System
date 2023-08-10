@@ -1,52 +1,9 @@
-import { useState } from "react";
-import { deleteStudent, listStudents } from "../services/StudentService";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { listDepartments } from "../services/DepartmentService";
-import { toast } from "react-toastify";
 import ButtonLink from "./ButtonLink";
+import useListStudentComponentHook from "../hooks/useListStudentComponentHook";
 
 const ListStudentComponent = () => {
-  const [students, setStudents] = useState([]);
-  const [departments, setDepartments] = useState([]);
-
-  const navigate = useNavigate();
-
-  const fetchStudents = async () => {
-    try {
-      const response = await listStudents();
-      setStudents(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-    return true;
-  };
-
-  const fetchDepartments = async () => {
-    const response = await listDepartments();
-    const departments = response.data;
-    setDepartments(departments);
-  };
-
-  useEffect(() => {
-    fetchStudents();
-    fetchDepartments();
-  }, []);
-
-  const getDepartmentName = (departmentId) => {
-    const department = departments.find((dept) => dept.id === departmentId);
-    return department ? department.departmentName : "Unknown Department";
-  };
-
-  const updateStudent = (id) => {
-    navigate(`/edit-student/${id}`);
-  };
-
-  const deleteStudentById = async (id) => {
-    await deleteStudent(id);
-    toast.error("Student deleted successfully!");
-    fetchStudents();
-  };
+  const { students, getDepartmentName, updateStudent, deleteStudentById } =
+    useListStudentComponentHook();
 
   return (
     <div className="container">
