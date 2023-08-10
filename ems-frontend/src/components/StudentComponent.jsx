@@ -1,11 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createStudent } from "../services/StudentService";
 
 const StudentComponent = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
+  const saveStudent = (e) => {
+    e.preventDefault();
+    if (firstName && lastName && email) {
+      const student = { firstName, lastName, email };
+      createStudent(student);
+      navigate("/");
+    } else {
+      alert("Please fill all the fields");
+    }
+  };
 
   return (
     <div className="container mt-5">
@@ -53,7 +65,9 @@ const StudentComponent = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <button className="btn btn-outline-success">Submit</button>
+              <button className="btn btn-outline-success" onClick={saveStudent}>
+                Submit
+              </button>
             </form>
           </div>
         </div>
