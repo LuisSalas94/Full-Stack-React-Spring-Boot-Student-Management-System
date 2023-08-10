@@ -49,4 +49,11 @@ public class StudentServiceImplementation implements StudentService {
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.mapToStudentDto(savedStudent);
     }
+
+    @Override
+    public void deleteStudent(Long studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(()->
+                new ResourceNotFoundException("Student was not found with given id: " + studentId));
+        studentRepository.deleteById(studentId);
+    }
 }
