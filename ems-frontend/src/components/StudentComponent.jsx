@@ -23,9 +23,11 @@ const StudentComponent = () => {
       if (id) {
         updateStudent(id, student);
         navigate("/");
+        return;
       }
       createStudent(student);
       navigate("/");
+      return;
     } else {
       alert("Please fill all the fields");
     }
