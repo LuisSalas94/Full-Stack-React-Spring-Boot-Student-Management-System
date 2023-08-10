@@ -9,6 +9,9 @@ import net.fernandosalas.ems.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class StudentServiceImplementation implements StudentService {
@@ -26,5 +29,13 @@ public class StudentServiceImplementation implements StudentService {
        Student student = studentRepository.findById(studentId).orElseThrow(()->
                 new ResourceNotFoundException("Student was not found with given id: " + studentId));
         return StudentMapper.mapToStudentDto(student);
+    }
+
+    @Override
+    public List<StudentDto> getAllStudents() {
+       List<Student> studentList =  studentRepository.findAll();
+        return studentList.stream()
+                .map(StudentMapper::mapToStudentDto)
+                .collect(Collectors.toList());
     }
 }
