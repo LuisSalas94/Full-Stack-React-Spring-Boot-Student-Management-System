@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/departments")
@@ -25,5 +26,11 @@ public class DepartmentController {
     public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable("id") Long departmentId) {
        DepartmentDto departmentDto = departmentService.getDepartmentById(departmentId);
        return new ResponseEntity<>(departmentDto, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
+        List<DepartmentDto> departmentDtoList = departmentService.getAllDepartments();
+        return new ResponseEntity<>(departmentDtoList, HttpStatus.OK);
     }
 }

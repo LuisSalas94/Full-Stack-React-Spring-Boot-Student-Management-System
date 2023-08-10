@@ -9,6 +9,9 @@ import net.fernandosalas.ems.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class DepartmentServiceImplementation implements DepartmentService {
@@ -27,5 +30,12 @@ public class DepartmentServiceImplementation implements DepartmentService {
       Department department = departmentRepository.findById(departmentId)
                .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: " + departmentId));
       return DepartmentMapper.mapToDepartmentDto(department);
+    }
+
+    @Override
+    public List<DepartmentDto> getAllDepartments() {
+        return departmentRepository.findAll()
+                .stream().map(DepartmentMapper::mapToDepartmentDto)
+                .collect(Collectors.toList());
     }
 }
