@@ -38,4 +38,15 @@ public class StudentServiceImplementation implements StudentService {
                 .map(StudentMapper::mapToStudentDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public StudentDto updateStudent(Long studentId, StudentDto studentDto) {
+        Student student = studentRepository.findById(studentId).orElseThrow(()->
+                new ResourceNotFoundException("Student was not found with given id: " + studentId));
+        student.setFirstName(studentDto.getFirstName());
+        student.setLastName(studentDto.getLastName());
+        student.setEmail(studentDto.getEmail());
+        Student savedStudent = studentRepository.save(student);
+        return StudentMapper.mapToStudentDto(savedStudent);
+    }
 }
