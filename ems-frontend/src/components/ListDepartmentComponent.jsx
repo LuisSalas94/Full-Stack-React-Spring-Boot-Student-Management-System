@@ -1,32 +1,9 @@
-import { useEffect, useState } from "react";
-import {
-  deleteDepartment,
-  listDepartments,
-} from "../services/DepartmentService";
-import { useNavigate } from "react-router-dom";
 import ButtonLink from "./ButtonLink";
+import useListDepartmentComponentHook from "../hooks/useListDepartmentComponentHook";
 
 const ListDepartmentComponent = () => {
-  const [departments, setDepartments] = useState([]);
-  const navigate = useNavigate();
-
-  const getDepartments = async () => {
-    const response = await listDepartments();
-    setDepartments(response.data);
-  };
-
-  const updateDepartment = (id) => {
-    navigate(`/edit-department/${id}`);
-  };
-
-  const removeDepartment = async (id) => {
-    await deleteDepartment(id);
-    getDepartments();
-  };
-
-  useEffect(() => {
-    getDepartments();
-  }, []);
+  const { departments, updateDepartment, removeDepartment } =
+    useListDepartmentComponentHook();
 
   return (
     <div className="container">

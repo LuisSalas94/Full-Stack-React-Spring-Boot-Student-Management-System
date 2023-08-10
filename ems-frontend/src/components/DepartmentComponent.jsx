@@ -1,54 +1,15 @@
-import { useEffect, useState } from "react";
-import {
-  createDepartment,
-  getDepartmentById,
-  updateDeparment,
-} from "../services/DepartmentService";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import ButtonLink from "./ButtonLink";
+import useDepartmentComponentHook from "../hooks/useDepartmentComponentHook";
 
 const DepartmentComponent = () => {
-  const [departmentName, setDepartmentName] = useState("");
-  const [departmentDescription, setDepartmentDescription] = useState("");
-  const [title, setTitle] = useState("");
-  const navigate = useNavigate();
-  const { id } = useParams();
-
-  const getDepartment = async (id) => {
-    const response = await getDepartmentById(id);
-    const department = response.data;
-    setDepartmentName(department.departmentName);
-    setDepartmentDescription(department.departmentDescription);
-  };
-
-  useEffect(() => {
-    if (id) {
-      setTitle("Update Department");
-      getDepartment(id);
-      return;
-    } else {
-      setTitle("Add Department");
-    }
-  }, [id]);
-
-  const saveOrUpdateDepartment = (e) => {
-    e.preventDefault();
-    const department = { departmentName, departmentDescription };
-    if (departmentName && departmentDescription) {
-      if (id) {
-        updateDeparment(id, department);
-        toast.info("Department updated successfully!");
-        navigate("/departments");
-        return;
-      }
-      createDepartment(department);
-      toast.success("Department added successfully!");
-      navigate("/departments");
-    } else {
-      toast.error("Please fill in all the fields!");
-    }
-  };
+  const {
+    departmentName,
+    setDepartmentName,
+    departmentDescription,
+    setDepartmentDescription,
+    title,
+    saveOrUpdateDepartment,
+  } = useDepartmentComponentHook();
 
   return (
     <div className="container mt-5">
