@@ -8,7 +8,6 @@ import net.fernandosalas.ems.repository.DepartmentRepository;
 import net.fernandosalas.ems.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,5 +46,12 @@ public class DepartmentServiceImplementation implements DepartmentService {
         department.setDepartmentDescription(departmentDto.getDepartmentDescription());
         Department updatedDepartment = departmentRepository.save(department);
         return DepartmentMapper.mapToDepartmentDto(updatedDepartment);
+    }
+
+    @Override
+    public void deleteDepartment(Long departmentId) {
+        Department department = departmentRepository.findById(departmentId)
+                .orElseThrow(()-> new ResourceNotFoundException("Department was not found with id: " + departmentId));
+        departmentRepository.deleteById(departmentId);
     }
 }
