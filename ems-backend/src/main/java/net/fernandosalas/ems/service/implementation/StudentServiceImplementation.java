@@ -2,6 +2,7 @@ package net.fernandosalas.ems.service.implementation;
 import lombok.AllArgsConstructor;
 import net.fernandosalas.ems.dto.StudentDto;
 import net.fernandosalas.ems.entity.Student;
+import net.fernandosalas.ems.exception.ResourceNotFoundException;
 import net.fernandosalas.ems.mapper.StudentMapper;
 import net.fernandosalas.ems.repository.StudentRepository;
 import net.fernandosalas.ems.service.StudentService;
@@ -22,6 +23,8 @@ public class StudentServiceImplementation implements StudentService {
 
     @Override
     public StudentDto getStudentById(Long studentId) {
-        return null;
+       Student student = studentRepository.findById(studentId).orElseThrow(()->
+                new ResourceNotFoundException("Student was not found with given id: " + studentId));
+        return StudentMapper.mapToStudentDto(student);
     }
 }
