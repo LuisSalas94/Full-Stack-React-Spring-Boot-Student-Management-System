@@ -1,19 +1,19 @@
 
 ![Screenshot_8](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/d46bab2c-c5b4-40b3-8efa-b3933b8face0)
 
-# Student Management System
+# Student Management System 📚
 
 A Full-stack web application built using React and Spring Boot for managing student records efficiently. The Student Management System allows users to add, update, and delete student information, along with their respective departments. This system ensures seamless communication between the frontend and backend, providing a user-friendly interface to manage student details.
 
 
-## Tech Stack
+## Tech Stack 🖥
 
 **Client:** React, Bootstrap, React Router, Axios, Toast Notifications Library
 
 **Server:** Spring Boot, Spring JPA, Spring Web, MySQL
 
 
-## Key Features
+## Key Features 🎇
 
 - Add, update, and delete student records with their first name, last name, email, and department.
 - View a list of students with department information.
@@ -26,7 +26,7 @@ A Full-stack web application built using React and Spring Boot for managing stud
 - Utilizes custom hooks for encapsulating and reusing logic across components.
 
 
-## Screenshots
+## Screenshots 🎞
 ![Screenshot_1](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/4eccd309-177e-481c-a727-a97c46543b73)
 ![Screenshot_2](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/b8d462fc-8049-4c88-b0a1-941e954bb8a1)
 ![Screenshot_3](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/4a0013f8-7ac4-42f0-98c2-c5931690e602)
@@ -34,14 +34,14 @@ A Full-stack web application built using React and Spring Boot for managing stud
 ![Screenshot_5](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/3ea5a570-38c3-4b77-9a2b-e0c00ee0667a)
 ![Screenshot_7](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/d65c4391-f404-4c21-8904-48e6b39e0c01)
 
-## Instructions
+## Instructions 🕶
 **Prerequisites:**
 
 Before running this application, ensure that you have the following prerequisites in place:
 
 - Java Development Kit (JDK) 8 or above
 - Node.js and npm (Node Package Manager)
-- MySQL database with a designated schema named "hostbuddy_restapi"
+- MySQL database with a designated schema named "student_management_system"
 
 **Setup:**
 
@@ -74,7 +74,7 @@ With these steps, you'll have the necessary environment set up to run the Spring
 - Medium: [Fernando Salas](https://medium.com/@luisfernandosalasg)
 - Portfolio: [Link](https://fernando-salas-portfolio.netlify.app/)
 
-## 🤝 Contributing
+## Contributing 🤝
 
 Contributions, issues, and feature requests are welcome!
 Feel free to check the [issues page](../../issues/).
@@ -84,7 +84,7 @@ Feel free to check the [issues page](../../issues/).
 
 Give a ⭐️ if you like this project!
 
-## 📝 License
+## License 📝
 
 This project is [MIT](./MIT.md) licensed.  
 
