@@ -1,9 +1,11 @@
 
-![Screenshot_8](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/d46bab2c-c5b4-40b3-8efa-b3933b8face0)
+![Screenshot_8](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/1a8c8595-ed25-4731-bc93-f248f48aebda)
 
 # Student Management System 📚
 
 A Full-stack web application built using React and Spring Boot for managing student records efficiently. The Student Management System allows users to add, update, and delete student information, along with their respective departments. This system ensures seamless communication between the frontend and backend, providing a user-friendly interface to manage student details.
+
+![Spring-Boot-React](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/c653dede-2d3b-4301-a074-48a9daf201b9)
 
 
 ## Tech Stack 🖥
@@ -27,12 +29,13 @@ A Full-stack web application built using React and Spring Boot for managing stud
 
 
 ## Screenshots 🎞
-![Screenshot_1](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/4eccd309-177e-481c-a727-a97c46543b73)
-![Screenshot_2](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/b8d462fc-8049-4c88-b0a1-941e954bb8a1)
-![Screenshot_3](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/4a0013f8-7ac4-42f0-98c2-c5931690e602)
-![Screenshot_4](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/71d52d6b-a1f2-41a0-9808-db4114c09c3f)
-![Screenshot_5](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/3ea5a570-38c3-4b77-9a2b-e0c00ee0667a)
-![Screenshot_7](https://github.com/LuisSalas94/Student-Management-System/assets/57297709/d65c4391-f404-4c21-8904-48e6b39e0c01)
+![Screenshot_1](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/49a269d1-1f95-4199-bbf4-f315fec957d5)
+![Screenshot_2](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/6eae9e41-a16f-43fe-b748-fdb63d74e850)
+![Screenshot_3](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/30c8b70e-f0a0-445f-ae72-788a7a23e8a8)
+![Screenshot_4](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/1f4c3ac1-cfab-45c0-9b46-b849de22c249)
+![Screenshot_5](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/2cd0d823-f084-4388-865a-4287693b5937)
+![Screenshot_7](https://github.com/LuisSalas94/Full-Stack-React-Spring-Boot-Student-Management-System/assets/57297709/3913298e-b0ce-469a-9683-17872f8e6d22)
+
 
 ## Instructions 🕶
 **Prerequisites:**
